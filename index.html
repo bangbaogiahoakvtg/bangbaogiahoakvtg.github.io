@@ -259,19 +259,58 @@
 
         .gallery-item {
             height: 250px;
-            background: linear-gradient(45deg, #ff9a9e, #fecfef, #a8edea, #fed6e3);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            transition: transform 0.3s ease;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .gallery-item:hover {
             transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,107,107,0.8), rgba(255,165,0,0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .gallery-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 250px;
+            font-size: 1.5rem;
+            color: #666;
         }
 
         /* Contact Section */
@@ -440,7 +479,20 @@
             </div>
         </div>
     </section>
-
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Hình Ảnh Sản Phẩm</h2>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Images will be loaded dynamically -->
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button id="refreshGallery" class="cta-button" style="background: linear-gradient(45deg, #667eea, #764ba2);">
+                    🔄 Xem Thêm Hình Ảnh
+                </button>
+            </div>
+        </div>
+    </section>
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
@@ -663,22 +715,7 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <h2 class="section-title">Hình Ảnh Sản Phẩm</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">🌹</div>
-                <div class="gallery-item">🌺</div>
-                <div class="gallery-item">🌻</div>
-                <div class="gallery-item">🌷</div>
-                <div class="gallery-item">🌿</div>
-                <div class="gallery-item">🌵</div>
-                <div class="gallery-item">🌸</div>
-                <div class="gallery-item">🌼</div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
@@ -693,7 +730,7 @@
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <span>📞 Hotline: 0909.123.456</span>
+                        <span>📞 Hotline: 096 292 06 38</span>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
@@ -791,6 +828,139 @@
         document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể. 🌸');
+        });
+
+        // Gallery functionality
+        const imageBaseUrl = 'https://bangbaogiahoakvtg.github.io/imgs/';
+        const imageExtensions = ['.jpg'];
+        let usedImages = new Set();
+        let allImages = [];
+
+        // Generate random image names (assuming images are named with numbers or common patterns)
+        function generateImageUrls() {
+            const images = [];
+            
+            // Try different naming patterns
+            const patterns = [
+                'img1', 'img2', 'img3', 'img4'
+                
+            ];
+
+            patterns.forEach(pattern => {
+                imageExtensions.forEach(ext => {
+                    images.push(imageBaseUrl + pattern + ext);
+                });
+            });
+
+            return images;
+        }
+
+        function loadRandomImages() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '<div class="gallery-loading">🔄 Đang tải hình ảnh...</div>';
+
+            // Generate all possible image URLs
+            if (allImages.length === 0) {
+                allImages = generateImageUrls();
+            }
+
+            // Shuffle and get 8 random images
+            const shuffled = [...allImages].sort(() => 0.5 - Math.random());
+            const selectedImages = shuffled.slice(0, 8);
+
+            // Clear previous images
+            usedImages.clear();
+
+            // Load images
+            let loadedCount = 0;
+            const totalImages = selectedImages.length;
+
+            selectedImages.forEach((imageUrl, index) => {
+                const img = new Image();
+                img.onload = function() {
+                    loadedCount++;
+                    if (loadedCount === totalImages) {
+                        displayImages(selectedImages);
+                    }
+                };
+                img.onerror = function() {
+                    loadedCount++;
+                    if (loadedCount === totalImages) {
+                        displayImages(selectedImages);
+                    }
+                };
+                img.src = imageUrl;
+            });
+        }
+
+        function displayImages(imageUrls) {
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '';
+
+            imageUrls.forEach((imageUrl, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item fade-in-up';
+                galleryItem.style.animationDelay = `${index * 0.1}s`;
+
+                galleryItem.innerHTML = `
+                    <img src="${imageUrl}" alt="Hoa Khu Vườn Trên Giáo ${index + 1}" loading="lazy">
+                    <div class="overlay">
+                        <span>🌸 Xem Chi Tiết</span>
+                    </div>
+                `;
+
+                // Add click event for image preview
+                galleryItem.addEventListener('click', function() {
+                    openImageModal(imageUrl);
+                });
+
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        function openImageModal(imageUrl) {
+            // Create modal
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                cursor: pointer;
+            `;
+
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.style.cssText = `
+                max-width: 90%;
+                max-height: 90%;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            `;
+
+            modal.appendChild(img);
+            document.body.appendChild(modal);
+
+            // Close modal on click
+            modal.addEventListener('click', function() {
+                document.body.removeChild(modal);
+            });
+        }
+
+        // Load images on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRandomImages();
+        });
+
+        // Refresh gallery button
+        document.getElementById('refreshGallery').addEventListener('click', function() {
+            loadRandomImages();
         });
     </script>
 </body>
