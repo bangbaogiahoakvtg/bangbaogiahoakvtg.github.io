@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khu Vườn Trên Giáo - Bảng Giá Hoa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8faf7;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+        
+        .intro h2 {
+            color: #2E7D32;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .intro p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .price-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: #2E7D32;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #4CAF50;
+        }
+        
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .price-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-image {
+            height: 200px;
+            background-color: #e8f5e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #4CAF50;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            color: #2E7D32;
+            margin-bottom: 10px;
+        }
+        
+        .card-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #E91E63;
+            margin-bottom: 15px;
+        }
+        
+        .card-description {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .card-features {
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+        
+        .card-features li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .card-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .card-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .card-button:hover {
+            background-color: #388E3C;
+        }
+        
+        .note {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-radius: 10px;
+            font-style: italic;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .hashtags {
+            margin-top: 15px;
+        }
+        
+        .hashtag {
+            display: inline-block;
+            margin: 0 5px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .price-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">🌿 Khu Vườn Trên Giáo 🌸</div>
+            <div class="tagline">Nâng niu từng cánh hoa, gửi gắm yêu thương xanh</div>
+        </header>
+        
+        <section class="intro">
+            <h2>Bảng Giá Hoa & Cây Cảnh</h2>
+            <p>Mỗi bông hoa ở đây đều được chăm chút bằng tình yêu và sự tỉ mỉ, để khi bạn mang về không chỉ là một chậu hoa – mà là một phần của khu vườn nhỏ cho riêng mình.</p>
+        </section>
+        
+        <section class="price-section">
+            <h2 class="section-title">Hoa Hồng Các Loại</h2>
+            <div class="price-grid">
+                <div class="price-card">
+                    <div class="card-image">🌹</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Hoa Hồng Leo</h3>
+                        <div class="card-price">250.000 VNĐ</div>
+                        <p class="card-description">Hoa hồng leo với sắc hoa rực rỡ, thích hợp trồng giàn, cổng hoặc tường.</p>
+                        <ul class="card-features">
+                            <li>Chiều cao: 40-60cm</li>
+                            <li>Chậu nhựa cao cấp</li>
+                            <li>Kèm hướng dẫn chăm sóc</li>
+                        </ul>
+                        <a href="#" class="card-button">Đặt Mua Ngay</a>
+                    </div>
+                </div>
+                
+                <div class="price-card">
+                    <div class="card-image">🌹</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Hoa Hồng Bụi</h3>
+                        <div class="card-price">180.000 VNĐ</div>
+                        <p class="card-description">Hoa hồng bụi với nhiều màu sắc, dễ chăm sóc, hoa nở quanh năm.</p>
+                        <ul class="card-features">
+                            <li>Chiều cao: 30-50cm</li>
+                            <li>Chậu gốm trang trí</li>
+                            <li>Đã có nụ hoặc hoa</li>
+                        </ul>
+                        <a href="#" class="card-button">Đặt Mua Ngay</a>
+                    </div>
+                </div>
+                
+                <div class="price-card">
+                    <div class="card-image">🌹</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Hoa Hồng Mini</h3>
+                        <div class="card-price">120.000 VNĐ</div>
+                        <p class="card-description">Hoa hồng mini xinh xắn, thích hợp để bàn, ban công hoặc cửa sổ.</p>
+                        <ul class="card-features">
+                            <li>Chiều cao: 15-25cm</li>
+                            <li>Chậu gốm nhỏ xinh</li>
+                            <li>Nhiều màu sắc lựa chọn</li>
+                        </ul>
+                        <a href="#" class="card-button">Đặt Mua Ngay</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="price-section">
+            <h2 class="section-title">Cây Cảnh Mini & Hoa Theo Mùa</h2>
+            <div class="price-grid">
+                <div class="price-card">
+                    <div class="card-image">🌵</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Sen Đá & Xương Rồng</h3>
+                        <div class="card-price">50.000 - 120.000 VNĐ</div>
+                        <p class="card-description">Bộ sưu tập sen đá và xương rồng đa dạng, dễ chăm sóc, thích hợp người mới bắt đầu.</p>
+                        <ul class="card-features">
+                            <li>Nhiều loại sen đá đẹp</li>
+                            <li>Xương rồng các kích thước</li>
+                            <li>Chậu gốm handmade</li>
+                        </ul>
+                        <a href="#" class="card-button">Đặt Mua Ngay</a>
+                    </div>
+                </div>
+                
+                <div class="price-card">
+                    <div class="card-image">🌼</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Hoa Cúc Đồng Tiền</h3>
+                        <div class="card-price">90.000 VNĐ</div>
+                        <p class="card-description">Hoa cúc đồng tiền với sắc hoa tươi tắn, mang lại không khí vui vẻ cho không gian.</p>
+                        <ul class="card-features">
+                            <li>Chiều cao: 25-35cm</li>
+                            <li>Nhiều màu sắc rực rỡ</li>
+                            <li>Hoa nở lâu tàn</li>
+                        </ul>
+                        <a href="#" class="card-button">Đặt Mua Ngay</a>
+                    </div>
+                </div>
+                
+                <div class="price-card">
+                    <div class="card-image">🌷</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Hoa Tulip Chậu</h3>
+                        <div class="card-price">150.000 VNĐ</div>
+                        <p class="card-description">Hoa tulip chậu với vẻ đẹp sang trọng, thích hợp trang trí nội thất.</p>
+                        <ul class="card-features">
+                            <li>Chiều cao: 20-30cm</li>
+                            <li>Chậu thủy tinh/ gốm</li>
+                            <li>Hoa nhập khẩu Hà Lan</li>
+                        </ul>
+                        <a href="#" class="card-button">Đặt Mua Ngay</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="price-section">
+            <h2 class="section-title">Phụ Kiện & Chậu Trồng</h2>
+            <div class="price-grid">
+                <div class="price-card">
+                    <div class="card-image">🪴</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Chậu Gốm Handmade</h3>
+                        <div class="card-price">60.000 - 200.000 VNĐ</div>
+                        <p class="card-description">Bộ sưu tập chậu gốm handmade với thiết kế độc đáo, phù hợp với mọi loại cây.</p>
+                        <ul class="card-features">
+                            <li>Nhiều kích thước</li>
+                            <li>Thiết kế độc quyền</li>
+                            <li>Màu sắc đa dạng</li>
+                        </ul>
+                        <a href="#" class="card-button">Đặt Mua Ngay</a>
+                    </div>
+                </div>
+                
+                <div class="price-card">
+                    <div class="card-image">🛠️</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Bộ Dụng Cụ Làm Vườn</h3>
+                        <div class="card-price">120.000 VNĐ</div>
+                        <p class="card-description">Bộ dụng cụ làm vườn mini đầy đủ, thích hợp cho việc chăm sóc cây cảnh trong nhà.</p>
+                        <ul class="card-features">
+                            <li>5 dụng cụ cơ bản</li>
+                            <li>Chất liệu cao cấp</li>
+                            <li>Túi đựng tiện lợi</li>
+                        </ul>
+                        <a href="#" class="card-button">Đặt Mua Ngay</a>
+                    </div>
+                </div>
+                
+                <div class="price-card">
+                    <div class="card-image">💧</div>
+                    <div class="card-content">
+                        <h3 class="card-title">Phân Bón & Đất Trồng</h3>
+                        <div class="card-price">30.000 - 80.000 VNĐ</div>
+                        <p class="card-description">Các loại phân bón hữu cơ và đất trồng chuyên dụng cho từng loại cây.</p>
+                        <ul class="card-features">
+                            <li>Phân bón hữu cơ</li>
+                            <li>Đất trồng dinh dưỡng</li>
+                            <li>Hướng dẫn sử dụng</li>
+                        </ul>
+                        <a href="#" class="card-button">Đặt Mua Ngay</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="note">
+            <p>💚 <strong>Lưu ý:</strong> Giá trên có thể thay đổi tùy theo kích thước cây, loại chậu và thời điểm trong năm. Vui lòng liên hệ trực tiếp để có báo giá chính xác nhất.</p>
+            <p>Chúng tôi cung cấp dịch vụ tư vấn chăm sóc cây và phối chậu theo phong cách riêng hoàn toàn miễn phí!</p>
+        </div>
+        
+        <footer>
+            <p>📍 <strong>Khu Vườn Trên Giáo</strong> - Nơi những chậu hoa nhỏ mang theo niềm vui – sắc màu – và hơi thở thiên nhiên</p>
+            <div class="hashtags">
+                <span class="hashtag">#KhuVuonTrenGiao</span>
+                <span class="hashtag">#HoaHong</span>
+                <span class="hashtag">#HoaChau</span>
+                <span class="hashtag">#CayCanhMini</span>
+                <span class="hashtag">#GreenLife</span>
+                <span class="hashtag">#GardenLover</span>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
