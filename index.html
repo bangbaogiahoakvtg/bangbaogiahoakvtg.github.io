@@ -3,397 +3,795 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khu Vườn Trên Giáo - Bảng Giá Hoa</title>
+    <title>Khu Vườn Trên Giáo - Hoa Chậu & Cây Cảnh Mini</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #f8faf7;
-            color: #333;
+            font-family: 'Quicksand', sans-serif;
             line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #4CAF50, #2E7D32);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .logo {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-        
-        .intro {
-            text-align: center;
-            margin-bottom: 40px;
             padding: 0 20px;
         }
-        
-        .intro h2 {
-            color: #2E7D32;
-            margin-bottom: 15px;
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
             font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
         }
-        
-        .intro p {
-            max-width: 800px;
-            margin: 0 auto;
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23e8f5e8" width="1200" height="600"/><circle fill="%23a8e6a3" cx="200" cy="150" r="80"/><circle fill="%23ffb3ba" cx="400" cy="200" r="60"/><circle fill="%23ffdfba" cx="600" cy="100" r="70"/><circle fill="%23bae1ff" cx="800" cy="180" r="50"/><circle fill="%23d4a5ff" cx="1000" cy="120" r="65"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
             font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
         }
-        
-        .price-section {
-            margin-bottom: 40px;
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
         }
-        
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: white;
+        }
+
         .section-title {
             text-align: center;
-            color: #2E7D32;
-            margin-bottom: 25px;
-            font-size: 1.8rem;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
             position: relative;
-            padding-bottom: 10px;
         }
-        
-        .section-title:after {
+
+        .section-title::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background-color: #4CAF50;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            border-radius: 2px;
         }
-        
-        .price-grid {
+
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
-        
-        .price-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #f0f0f0;
         }
-        
-        .price-card:hover {
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
-        
-        .card-image {
+
+        .pricing-card.featured {
+            border: 3px solid #ff6b6b;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'PHỔ BIẾN';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+
+        .flower-image {
+            width: 100%;
             height: 200px;
-            background-color: #e8f5e9;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            border-radius: 10px;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
-            color: #4CAF50;
+            color: white;
         }
-        
-        .card-content {
-            padding: 20px;
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin: 1rem 0;
         }
-        
-        .card-title {
-            font-size: 1.3rem;
-            color: #2E7D32;
-            margin-bottom: 10px;
-        }
-        
-        .card-price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #E91E63;
-            margin-bottom: 15px;
-        }
-        
-        .card-description {
+
+        .price-unit {
+            font-size: 1rem;
             color: #666;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
         }
-        
-        .card-features {
-            list-style-type: none;
-            margin-bottom: 20px;
+
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 0;
+            background: white;
         }
-        
-        .card-features li {
-            padding: 5px 0;
-            position: relative;
-            padding-left: 25px;
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
         }
-        
-        .card-features li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #4CAF50;
-            font-weight: bold;
+
+        .gallery-item {
+            height: 250px;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #a8edea, #fed6e3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
-        
-        .card-button {
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item i {
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            width: 20px;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
             display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
             width: 100%;
             padding: 12px;
-            background-color: #4CAF50;
-            color: white;
             border: none;
-            border-radius: 5px;
-            font-size: 1rem;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
-            text-align: center;
-            text-decoration: none;
+            transition: transform 0.3s ease;
         }
-        
-        .card-button:hover {
-            background-color: #388E3C;
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
         }
-        
-        .note {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #e8f5e9;
-            border-radius: 10px;
-            font-style: italic;
-        }
-        
+
+        /* Footer */
         footer {
+            background: #2c3e50;
+            color: white;
             text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            color: #666;
-            border-top: 1px solid #e0e0e0;
+            padding: 2rem 0;
         }
-        
-        .hashtags {
-            margin-top: 15px;
+
+        .social-links {
+            margin: 1rem 0;
         }
-        
-        .hashtag {
-            display: inline-block;
-            margin: 0 5px;
-            color: #4CAF50;
-            font-weight: bold;
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
         }
-        
+
+        .social-links a:hover {
+            color: #ffd700;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .price-grid {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .contact-content {
                 grid-template-columns: 1fr;
             }
-            
-            .logo {
-                font-size: 2rem;
+
+            .pricing-card.featured {
+                transform: none;
             }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">🌿 Khu Vườn Trên Giáo 🌸</div>
-            <div class="tagline">Nâng niu từng cánh hoa, gửi gắm yêu thương xanh</div>
-        </header>
-        
-        <section class="intro">
-            <h2>Bảng Giá Hoa & Cây Cảnh</h2>
-            <p>Mỗi bông hoa ở đây đều được chăm chút bằng tình yêu và sự tỉ mỉ, để khi bạn mang về không chỉ là một chậu hoa – mà là một phần của khu vườn nhỏ cho riêng mình.</p>
-        </section>
-        
-        <section class="price-section">
-            <h2 class="section-title">Hoa Hồng Các Loại</h2>
-            <div class="price-grid">
-                <div class="price-card">
-                    <div class="card-image">🌹</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Hoa Hồng Leo</h3>
-                        <div class="card-price">250.000 VNĐ</div>
-                        <p class="card-description">Hoa hồng leo với sắc hoa rực rỡ, thích hợp trồng giàn, cổng hoặc tường.</p>
-                        <ul class="card-features">
-                            <li>Chiều cao: 40-60cm</li>
-                            <li>Chậu nhựa cao cấp</li>
-                            <li>Kèm hướng dẫn chăm sóc</li>
-                        </ul>
-                        <a href="#" class="card-button">Đặt Mua Ngay</a>
-                    </div>
-                </div>
-                
-                <div class="price-card">
-                    <div class="card-image">🌹</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Hoa Hồng Bụi</h3>
-                        <div class="card-price">180.000 VNĐ</div>
-                        <p class="card-description">Hoa hồng bụi với nhiều màu sắc, dễ chăm sóc, hoa nở quanh năm.</p>
-                        <ul class="card-features">
-                            <li>Chiều cao: 30-50cm</li>
-                            <li>Chậu gốm trang trí</li>
-                            <li>Đã có nụ hoặc hoa</li>
-                        </ul>
-                        <a href="#" class="card-button">Đặt Mua Ngay</a>
-                    </div>
-                </div>
-                
-                <div class="price-card">
-                    <div class="card-image">🌹</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Hoa Hồng Mini</h3>
-                        <div class="card-price">120.000 VNĐ</div>
-                        <p class="card-description">Hoa hồng mini xinh xắn, thích hợp để bàn, ban công hoặc cửa sổ.</p>
-                        <ul class="card-features">
-                            <li>Chiều cao: 15-25cm</li>
-                            <li>Chậu gốm nhỏ xinh</li>
-                            <li>Nhiều màu sắc lựa chọn</li>
-                        </ul>
-                        <a href="#" class="card-button">Đặt Mua Ngay</a>
-                    </div>
-                </div>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">🌿 Khu Vườn Trên Giáo</a>
+            <ul class="nav-links">
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#services">Dịch vụ</a></li>
+                <li><a href="#pricing">Báo giá</a></li>
+                <li><a href="#gallery">Hình ảnh</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <h1>🌿 CHÀO MỪNG BẠN ĐẾN VỚI "KHU VƯỜN TRÊN GIÁO" 🌸</h1>
+                <p>Nơi những chậu hoa nhỏ mang theo niềm vui – sắc màu – và hơi thở thiên nhiên đến từng góc nhỏ trong ngôi nhà bạn 💚</p>
+                <a href="#pricing" class="cta-button">Xem Báo Giá Ngay</a>
             </div>
-        </section>
-        
-        <section class="price-section">
-            <h2 class="section-title">Cây Cảnh Mini & Hoa Theo Mùa</h2>
-            <div class="price-grid">
-                <div class="price-card">
-                    <div class="card-image">🌵</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Sen Đá & Xương Rồng</h3>
-                        <div class="card-price">50.000 - 120.000 VNĐ</div>
-                        <p class="card-description">Bộ sưu tập sen đá và xương rồng đa dạng, dễ chăm sóc, thích hợp người mới bắt đầu.</p>
-                        <ul class="card-features">
-                            <li>Nhiều loại sen đá đẹp</li>
-                            <li>Xương rồng các kích thước</li>
-                            <li>Chậu gốm handmade</li>
-                        </ul>
-                        <a href="#" class="card-button">Đặt Mua Ngay</a>
-                    </div>
-                </div>
-                
-                <div class="price-card">
-                    <div class="card-image">🌼</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Hoa Cúc Đồng Tiền</h3>
-                        <div class="card-price">90.000 VNĐ</div>
-                        <p class="card-description">Hoa cúc đồng tiền với sắc hoa tươi tắn, mang lại không khí vui vẻ cho không gian.</p>
-                        <ul class="card-features">
-                            <li>Chiều cao: 25-35cm</li>
-                            <li>Nhiều màu sắc rực rỡ</li>
-                            <li>Hoa nở lâu tàn</li>
-                        </ul>
-                        <a href="#" class="card-button">Đặt Mua Ngay</a>
-                    </div>
-                </div>
-                
-                <div class="price-card">
-                    <div class="card-image">🌷</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Hoa Tulip Chậu</h3>
-                        <div class="card-price">150.000 VNĐ</div>
-                        <p class="card-description">Hoa tulip chậu với vẻ đẹp sang trọng, thích hợp trang trí nội thất.</p>
-                        <ul class="card-features">
-                            <li>Chiều cao: 20-30cm</li>
-                            <li>Chậu thủy tinh/ gốm</li>
-                            <li>Hoa nhập khẩu Hà Lan</li>
-                        </ul>
-                        <a href="#" class="card-button">Đặt Mua Ngay</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="price-section">
-            <h2 class="section-title">Phụ Kiện & Chậu Trồng</h2>
-            <div class="price-grid">
-                <div class="price-card">
-                    <div class="card-image">🪴</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Chậu Gốm Handmade</h3>
-                        <div class="card-price">60.000 - 200.000 VNĐ</div>
-                        <p class="card-description">Bộ sưu tập chậu gốm handmade với thiết kế độc đáo, phù hợp với mọi loại cây.</p>
-                        <ul class="card-features">
-                            <li>Nhiều kích thước</li>
-                            <li>Thiết kế độc quyền</li>
-                            <li>Màu sắc đa dạng</li>
-                        </ul>
-                        <a href="#" class="card-button">Đặt Mua Ngay</a>
-                    </div>
-                </div>
-                
-                <div class="price-card">
-                    <div class="card-image">🛠️</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Bộ Dụng Cụ Làm Vườn</h3>
-                        <div class="card-price">120.000 VNĐ</div>
-                        <p class="card-description">Bộ dụng cụ làm vườn mini đầy đủ, thích hợp cho việc chăm sóc cây cảnh trong nhà.</p>
-                        <ul class="card-features">
-                            <li>5 dụng cụ cơ bản</li>
-                            <li>Chất liệu cao cấp</li>
-                            <li>Túi đựng tiện lợi</li>
-                        </ul>
-                        <a href="#" class="card-button">Đặt Mua Ngay</a>
-                    </div>
-                </div>
-                
-                <div class="price-card">
-                    <div class="card-image">💧</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Phân Bón & Đất Trồng</h3>
-                        <div class="card-price">30.000 - 80.000 VNĐ</div>
-                        <p class="card-description">Các loại phân bón hữu cơ và đất trồng chuyên dụng cho từng loại cây.</p>
-                        <ul class="card-features">
-                            <li>Phân bón hữu cơ</li>
-                            <li>Đất trồng dinh dưỡng</li>
-                            <li>Hướng dẫn sử dụng</li>
-                        </ul>
-                        <a href="#" class="card-button">Đặt Mua Ngay</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <div class="note">
-            <p>💚 <strong>Lưu ý:</strong> Giá trên có thể thay đổi tùy theo kích thước cây, loại chậu và thời điểm trong năm. Vui lòng liên hệ trực tiếp để có báo giá chính xác nhất.</p>
-            <p>Chúng tôi cung cấp dịch vụ tư vấn chăm sóc cây và phối chậu theo phong cách riêng hoàn toàn miễn phí!</p>
         </div>
-        
-        <footer>
-            <p>📍 <strong>Khu Vườn Trên Giáo</strong> - Nơi những chậu hoa nhỏ mang theo niềm vui – sắc màu – và hơi thở thiên nhiên</p>
-            <div class="hashtags">
-                <span class="hashtag">#KhuVuonTrenGiao</span>
-                <span class="hashtag">#HoaHong</span>
-                <span class="hashtag">#HoaChau</span>
-                <span class="hashtag">#CayCanhMini</span>
-                <span class="hashtag">#GreenLife</span>
-                <span class="hashtag">#GardenLover</span>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Dịch Vụ Của Chúng Tôi</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">🌹</div>
+                    <h3>Hoa Chậu - Hoa Hồng</h3>
+                    <p>Chuyên cung cấp các loại hoa hồng đa dạng, từ hoa hồng mini đến hoa hồng thân gỗ, được chăm sóc tỉ mỉ và đảm bảo chất lượng.</p>
+                </div>
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">🌼</div>
+                    <h3>Cây Cảnh Mini</h3>
+                    <p>Hoa theo mùa và cây cảnh mini phù hợp cho không gian nhỏ, mang thiên nhiên vào từng góc nhà của bạn.</p>
+                </div>
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">🌷</div>
+                    <h3>Phụ Kiện & Chậu Trồng</h3>
+                    <p>Chậu trồng độc đáo và phụ kiện chăm sóc cây, giúp bạn tạo nên không gian xanh hoàn hảo.</p>
+                </div>
+                <div class="service-card fade-in-up">
+                    <div class="service-icon">🌱</div>
+                    <h3>Tư Vấn Chăm Sóc</h3>
+                    <p>Tư vấn chăm sóc cây và phối chậu theo phong cách riêng, đảm bảo cây luôn tươi tốt và đẹp mắt.</p>
+                </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Báo Giá Hoa & Cây Cảnh</h2>
+            
+            <!-- Hàng Bụi -->
+            <div class="pricing-category">
+                <h3 style="text-align: center; font-size: 2rem; margin: 3rem 0 2rem 0; color: #2c3e50;">🌸 HÀNG BỤI - 120.000 VND</h3>
+                <div class="pricing-grid">
+                    <div class="pricing-card fade-in-up">
+                        <div class="flower-image">❄️</div>
+                        <h3>Hoa SUMMER SNOW</h3>
+                        <p>Hoa bông chùm, đổi màu theo thời tiết</p>
+                        <div class="price">120.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Hè nắng: hoa màu trắng</li>
+                            <li>✓ Trời lạnh: hoa màu hồng</li>
+                            <li>✓ Khi tàn cánh khô không bị rụng</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card fade-in-up">
+                        <div class="flower-image">🌹</div>
+                        <h3>Hoa Mon</h3>
+                        <p>Hoa leo, bông màu hồng theo chùm</p>
+                        <div class="price">120.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Khả năng leo tốt</li>
+                            <li>✓ Chiều cao 2-3m</li>
+                            <li>✓ Càng uốn cong càng ra hoa nhiều</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card fade-in-up">
+                        <div class="flower-image">🌺</div>
+                        <h3>Hoa Kenlong</h3>
+                        <p>Bông to, khỏe, màu đỏ rực rỡ</p>
+                        <div class="price">120.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Bông to, khỏe mạnh</li>
+                            <li>✓ Màu đỏ đậm đà</li>
+                            <li>✓ Dễ chăm sóc</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card fade-in-up">
+                        <div class="flower-image">🌼</div>
+                        <h3>Hoa Lafon</h3>
+                        <p>Mùi hương thơm, "bình nước hoa di động"</p>
+                        <div class="price">120.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Mùi hương thơm ngát</li>
+                            <li>✓ Được mệnh danh "bình nước hoa di động"</li>
+                            <li>✓ Tạo không gian thơm mát</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card fade-in-up">
+                        <div class="flower-image">🌷</div>
+                        <h3>Hoa Tỉ Muội Sadet</h3>
+                        <p>Bông nhỏ cánh dày, độ bền cao</p>
+                        <div class="price">120.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Bông nhỏ cánh dày</li>
+                            <li>✓ Độ bền 7-15 ngày</li>
+                            <li>✓ Hoa bền, đẹp lâu</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hàng Tree -->
+            <div class="pricing-category">
+                <h3 style="text-align: center; font-size: 2rem; margin: 3rem 0 2rem 0; color: #2c3e50;">🌳 HÀNG TREE - 180.000 VND</h3>
+                <div class="pricing-grid">
+                    <div class="pricing-card fade-in-up">
+                        <div class="flower-image">❄️</div>
+                        <h3>Hoa SUMMER SNOW (Tree)</h3>
+                        <p>Phiên bản tree của Summer Snow</p>
+                        <div class="price">180.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Thân cây cao đẹp</li>
+                            <li>✓ Đổi màu theo thời tiết</li>
+                            <li>✓ Phù hợp trang trí sân vườn</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card fade-in-up">
+                        <div class="flower-image">🌹</div>
+                        <h3>Hoa Mon (Tree)</h3>
+                        <p>Phiên bản tree của Mon</p>
+                        <div class="price">180.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Thân cây leo đẹp</li>
+                            <li>✓ Bông hồng theo chùm</li>
+                            <li>✓ Dễ tạo dáng</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card fade-in-up">
+                        <div class="flower-image">🌺</div>
+                        <h3>Hoa Kenlong (Tree)</h3>
+                        <p>Phiên bản tree của Kenlong</p>
+                        <div class="price">180.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Thân cây khỏe mạnh</li>
+                            <li>✓ Bông đỏ to đẹp</li>
+                            <li>✓ Tạo điểm nhấn cho khu vườn</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card fade-in-up">
+                        <div class="flower-image">🌼</div>
+                        <h3>Hoa Lafon (Tree)</h3>
+                        <p>Phiên bản tree của Lafon</p>
+                        <div class="price">180.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Thân cây thơm ngát</li>
+                            <li>✓ "Bình nước hoa di động"</li>
+                            <li>✓ Tạo không gian thơm mát</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card fade-in-up">
+                        <div class="flower-image">🌷</div>
+                        <h3>Hoa Tỉ Muội Sadet (Tree)</h3>
+                        <p>Phiên bản tree của Tỉ Muội Sadet</p>
+                        <div class="price">180.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Thân cây đẹp</li>
+                            <li>✓ Bông bền 7-15 ngày</li>
+                            <li>✓ Phù hợp trang trí</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trên Chậu -->
+            <div class="pricing-category">
+                <h3 style="text-align: center; font-size: 2rem; margin: 3rem 0 2rem 0; color: #2c3e50;">🏺 TRÊN CHẬU - 600.000 VND</h3>
+                <div class="pricing-grid">
+                    <div class="pricing-card featured fade-in-up">
+                        <div class="flower-image">❄️</div>
+                        <h3>Hoa SUMMER SNOW (Chậu)</h3>
+                        <p>Hàng bụi trên chậu đẹp</p>
+                        <div class="price">600.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Chậu trang trí cao cấp</li>
+                            <li>✓ Đất dinh dưỡng chuyên dụng</li>
+                            <li>✓ Sẵn sàng trang trí</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card featured fade-in-up">
+                        <div class="flower-image">🌹</div>
+                        <h3>Hoa Mon (Chậu)</h3>
+                        <p>Hàng bụi trên chậu đẹp</p>
+                        <div class="price">600.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Chậu trang trí cao cấp</li>
+                            <li>✓ Đất dinh dưỡng chuyên dụng</li>
+                            <li>✓ Sẵn sàng trang trí</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card featured fade-in-up">
+                        <div class="flower-image">🌺</div>
+                        <h3>Hoa Kenlong (Chậu)</h3>
+                        <p>Hàng bụi trên chậu đẹp</p>
+                        <div class="price">600.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Chậu trang trí cao cấp</li>
+                            <li>✓ Đất dinh dưỡng chuyên dụng</li>
+                            <li>✓ Sẵn sàng trang trí</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card featured fade-in-up">
+                        <div class="flower-image">🌼</div>
+                        <h3>Hoa Lafon (Chậu)</h3>
+                        <p>Hàng bụi trên chậu đẹp</p>
+                        <div class="price">600.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Chậu trang trí cao cấp</li>
+                            <li>✓ Đất dinh dưỡng chuyên dụng</li>
+                            <li>✓ Sẵn sàng trang trí</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card featured fade-in-up">
+                        <div class="flower-image">🌷</div>
+                        <h3>Hoa Tỉ Muội Sadet (Chậu)</h3>
+                        <p>Hàng bụi trên chậu đẹp</p>
+                        <div class="price">600.000 <span class="price-unit">VND</span></div>
+                        <ul style="text-align: left; margin-top: 1rem; font-size: 0.9rem;">
+                            <li>✓ Chậu trang trí cao cấp</li>
+                            <li>✓ Đất dinh dưỡng chuyên dụng</li>
+                            <li>✓ Sẵn sàng trang trí</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Hình Ảnh Sản Phẩm</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">🌹</div>
+                <div class="gallery-item">🌺</div>
+                <div class="gallery-item">🌻</div>
+                <div class="gallery-item">🌷</div>
+                <div class="gallery-item">🌿</div>
+                <div class="gallery-item">🌵</div>
+                <div class="gallery-item">🌸</div>
+                <div class="gallery-item">🌼</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Liên Hệ Với Chúng Tôi</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Thông Tin Liên Hệ</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>📍 Khu Vườn Trên Giáo - Nâng niu từng cánh hoa, gửi gắm yêu thương xanh</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>📞 Hotline: 0909.123.456</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>✉️ Email: khuvuontrengiao@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-facebook"></i>
+                        <span>📘 Facebook: Khu Vườn Trên Giáo</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-instagram"></i>
+                        <span>📷 Instagram: @khuvuontrengiao</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>🕒 Giờ mở cửa: 8:00 - 18:00 (T2-T7)</span>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Gửi Tin Nhắn</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Họ và tên:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại:</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Tin nhắn:</label>
+                            <textarea id="message" name="message" placeholder="Bạn muốn tư vấn về loại hoa nào?"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Gửi Tin Nhắn</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>🌿 Khu Vườn Trên Giáo 🌸</h3>
+            <p>Nâng niu từng cánh hoa, gửi gắm yêu thương xanh</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2024 Khu Vườn Trên Giáo. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all service cards and pricing cards
+        document.querySelectorAll('.service-card, .pricing-card, .gallery-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Cảm ơn bạn đã liên hệ! Chúng tôi sẽ phản hồi sớm nhất có thể. 🌸');
+        });
+    </script>
 </body>
 </html>
